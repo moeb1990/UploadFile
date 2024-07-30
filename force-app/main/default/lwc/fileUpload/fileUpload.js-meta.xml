@@ -14,6 +14,7 @@
             <property name="uploadButton" type="Boolean" label="Show the Upload File Button"  description="If to show upload file button"/>
             <property name="uploadModal" type="Boolean" label="Show the Upload File Popup"  description="If to show upload file popup"/>
             <property name="modalHeader" type="String" label="Popup Title"  description="The text appearing on the popup title. Relevant when the uploadModal is true"/>
+            <property name="dimensionAllowed" type="String" label="Allowed Dimension"  description="The allowed dimension for the uploaded image. Relevant when the file is an image"/>
 
         </targetConfig>
     </targetConfigs>

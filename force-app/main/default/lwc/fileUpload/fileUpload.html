@@ -12,19 +12,20 @@
       </div>
                 
       <div class="slds-var-m-around_medium container">
-        <!-- <template if:false={uploadModal}> -->
           <div>
           
             <!-- Upload Button -->
-            <template lwc:if={fileData.base64}>
-              <template lwc:if={uploadButton}>
-                <div class="slds-var-m-vertical_medium">
-                    <lightning-button
-                      variant="brand"
-                      label="Upload File" 
-                      onclick={handleUpload} 
-                    ></lightning-button>
-                </div>
+            <template lwc:if={valid}>
+              <template lwc:if={fileData.base64}>
+                <template lwc:if={uploadButton}>
+                  <div class="slds-var-m-vertical_medium">
+                      <lightning-button
+                        variant="brand"
+                        label="Upload File" 
+                        onclick={handleUpload} 
+                      ></lightning-button>
+                  </div>
+                </template>
               </template>
             </template>
 
@@ -46,7 +47,6 @@
             </div>
           </template>
 
-        <!-- </template> -->
       </div>
         
         <!-- Remove Button -->
@@ -66,6 +66,9 @@
           </template>
         </template>
 
+        <!-- Invalid message -->
+        <P if:false={valid} class="slds-text-color_error slds-text-title_bold invalidMessage"> {errorMessage}</P>
+        
         <!-- Upload Modal -->
         <template lwc:if={fileData.base64}>
           <template lwc:if={uploadModal}>
@@ -73,12 +76,6 @@
 
               <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
                 <div class="slds-modal__container">
-                  <!-- <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
-                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
-                      <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
-                    </svg>
-                    <span class="slds-assistive-text">Cancel and close</span>
-                  </button> -->
                   <div class="slds-modal__header">
                     <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">{modalHeader}</h1>
                   </div>

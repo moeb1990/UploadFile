@@ -1,5 +1,4 @@
 import { LightningElement, api } from 'lwc';
-// import LightningModal from 'lightning/modal'
 
 // Import apex class
 import fileCreate from '@salesforce/apex/fileUpload.fileCreate'
@@ -12,9 +11,13 @@ export default class FileUpload extends LightningElement {
     @api uploadButton = false // if to show "upload file" button
     @api uploadModal = false // if to show "upload file" modal
     @api modalHeader // store the modal header
+    @api dimensionAllowed // store the allowed dimension of image uploaded
     openModal // displays the modal on the screen
     fileUploaded // if file is uploaded
-    fileData = {} // store the file name and base64
+    fileData = {} // store the file information (base64, format, size and more)
+    valid = true // if the uploaded file information are valid (dimension, size, format)
+    errorMessage // store the error message if it exists
+    test
 
     // Return true for images
     get image () {
@@ -55,17 +58,24 @@ export default class FileUpload extends LightningElement {
                             'fileHeight' : img.naturalHeight,
                             'fileWidth' : img.naturalWidth
                         }
+                    
+                        // Vadidate Input
+                        if (this.image && this.dimensionAllowed) {
+                            this.valid = this.validateInput ()
+                            console.log ('valid after' + this.valid)
+
+                        }
+
+                        // After Uploading a file for the popup method
+                        if (this.valid && this.uploadModal) {
+                            this.openModal = true
+                        }
+
+                        // After Uploading a file for the direct onload
+                        if (this.valid && ! this.uploadButton && !this.uploadModal) {
+                            this.createFile ()
+                        }
                     }
-                }
-
-                // After Uploading a file for the direct onload
-                if (this.uploadModal) {
-                    this.openModal = true
-                }
-
-                // After Uploading a file for the popup method
-                if (! this.uploadButton && !this.uploadModal) {
-                    this.createFile ()
                 }
             }
         }
@@ -74,7 +84,8 @@ export default class FileUpload extends LightningElement {
 
     // After clicking the "Remove File"
     handleRemove () {
-        this.fileData = {} 
+        this.fileData = {}
+        this.valid = true
     }
 
     // After clicking the "Upload File"
@@ -111,5 +122,18 @@ export default class FileUpload extends LightningElement {
 
         // Show success message
         this.fileUploaded = true
+    }
+
+    // validate dimension
+    validateInput () {
+
+        // Validate Dimension
+        if(this.dimensionAllowed) {
+            if(! this.dimensionAllowed.toLowerCase().includes(`${this.fileData.fileWidth}x${this.fileData.fileHeight}`)){
+                this.errorMessage = `The image dimensions that you uploaded (${this.fileData.fileWidth}x${this.fileData.fileHeight}) do not match the allowed dimensions (${this.dimensionAllowed})`
+                return false
+            }
+            return true
+        }
     }
 }

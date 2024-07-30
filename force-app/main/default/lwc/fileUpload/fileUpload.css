@@ -3,6 +3,10 @@
     grid-template-columns: 150px 350px; /* display componenets side by side */
 }
 
+.invalidMessage {
+    width: 300px;
+}
+
 img:hover {
     height: max-content;
     width: max-content;
