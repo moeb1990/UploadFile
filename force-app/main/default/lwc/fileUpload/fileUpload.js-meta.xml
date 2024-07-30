@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>File Upload</masterLabel>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            
+            <!-- Properties -->
+            <property name="recordId" type="String" label="Record Id" required="true"/>
+            <property name="uploadButton" type="Boolean" label="Show the Upload File Button"  description="If to show upload file button"/>
+            <property name="uploadModal" type="Boolean" label="Show the Upload File Popup"  description="If to show upload file popup"/>
+            <property name="modalHeader" type="String" label="Popup Title"  description="The text appearing on the popup title. Relevant when the uploadModal is true"/>
+
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

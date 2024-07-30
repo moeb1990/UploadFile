@@ -1,0 +1,119 @@
+<template>
+    <lightning-card>
+
+      <!-- File upload component -->
+      <div class="slds-var-m-around_medium">
+          <lightning-input 
+            type="file"
+            label={label}
+            accept={formats}
+            onchange={handleFileUpload}
+          ></lightning-input>
+      </div>
+                
+      <div class="slds-var-m-around_medium container">
+        <!-- <template if:false={uploadModal}> -->
+          <div>
+          
+            <!-- Upload Button -->
+            <template lwc:if={fileData.base64}>
+              <template lwc:if={uploadButton}>
+                <div class="slds-var-m-vertical_medium">
+                    <lightning-button
+                      variant="brand"
+                      label="Upload File" 
+                      onclick={handleUpload} 
+                    ></lightning-button>
+                </div>
+              </template>
+            </template>
+
+            <!-- Success message -->
+            <P lwc:if={fileUploaded} class="slds-text-color_success slds-text-title_bold"> File is Uploaded</P>
+
+            <!-- File Details -->
+            <p lwc:if={fileData.fileName}>Name: {fileData.fileName}</p>
+            <p lwc:if={fileData.fileSize}>Size: {fileData.fileSize} Bytes</p>
+            <p lwc:if={fileData.fileFormat}>Format: {fileData.fileFormat}</p>
+            <p lwc:if={fileData.fileHeight}>Height: {fileData.fileHeight} Px</p>
+            <p lwc:if={fileData.fileWidth}>Width: {fileData.fileWidth} Px</p>
+          </div>
+          
+          <!-- Image preview -->
+          <template lwc:if={image}>
+            <div class="slds-var-m-vertical_medium">
+              <img src={fileData.base64} height="150" width="150">
+            </div>
+          </template>
+
+        <!-- </template> -->
+      </div>
+        
+        <!-- Remove Button -->
+        <template lwc:if={fileData.base64}>
+          <template lwc:if={uploadButton}>
+            <template if:false={fileUploaded}>
+              <div class="slds-var-m-around_medium">
+                <div class="slds-var-m-top_x-large">
+                  <lightning-button
+                    variant="destructive"
+                    label="Remove File" 
+                    onclick={handleRemove} 
+                  ></lightning-button>
+                </div>
+              </div>
+            </template>
+          </template>
+        </template>
+
+        <!-- Upload Modal -->
+        <template lwc:if={fileData.base64}>
+          <template lwc:if={uploadModal}>
+            <template lwc:if={openModal}>
+
+              <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                  <!-- <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                      <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Cancel and close</span>
+                  </button> -->
+                  <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">{modalHeader}</h1>
+                  </div>
+                  <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">                  
+                    <div class="slds-var-m-around_medium container">
+                      <div>
+                        <!-- File Details -->
+                        <p lwc:if={fileData.fileName}>Name: {fileData.fileName}</p>
+                        <p lwc:if={fileData.fileSize}>Size: {fileData.fileSize} Bytes</p>
+                        <p lwc:if={fileData.fileFormat}>Format: {fileData.fileFormat}</p>
+                        <p lwc:if={fileData.fileHeight}>Height: {fileData.fileHeight} Px</p>
+                        <p lwc:if={fileData.fileWidth}>Width: {fileData.fileWidth} Px</p>
+                      </div>
+                        
+                        <!-- Image preview -->
+                        <template lwc:if={image}>
+                          <div class="slds-var-m-vertical_medium">
+                            <img src={fileData.base64} height="150" width="150">
+                          </div>
+                        </template>
+                    </div>
+
+                  </div>
+                  <div class="slds-modal__footer slds-modal__footer_directional">
+                    <button class="slds-button slds-button_neutral" onclick={handleModalClose}>Close</button>
+                    <button class="slds-button slds-button_brand" onclick={handleModalUpload}>Upload</button>
+                  </div>
+                </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>  
+            
+            </template>  
+          </template>  
+        </template>  
+
+
+    </lightning-card>
+</template>
