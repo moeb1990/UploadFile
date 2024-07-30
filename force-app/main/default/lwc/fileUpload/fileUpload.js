@@ -8,6 +8,7 @@ export default class FileUpload extends LightningElement {
     @api formats // store the allowed formats (".pdf, .doc")
     @api recordId // store the record Id where to store the file in
     @api label // store the label appearing on top of the component
+    @api title // store the title appearing when mouse hovers over the component
     @api uploadButton = false // if to show "upload file" button
     @api uploadModal = false // if to show "upload file" modal
     @api modalHeader // store the modal header
