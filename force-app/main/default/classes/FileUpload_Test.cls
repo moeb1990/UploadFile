@@ -14,7 +14,8 @@ private class FileUpload_Test {
         Test.startTest();
         
         // Call the fileCreate method
-        String resultContentDocumentLinkId = FileUpload.fileCreate(base64Content, fileName, testAccount.Id);
+        Map<String, String> result = FileUpload.fileCreate(base64Content, fileName, testAccount.Id);
+        String resultContentDocumentLinkId = result.get('contentDocumentLinkId');
         
         Test.stopTest();
         

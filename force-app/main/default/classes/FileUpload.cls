@@ -2,7 +2,7 @@ public  class FileUpload {
     
     // Create and attach file to record
     @AuraEnabled
-    public static String fileCreate(String base64AfterComma, String fileName, String recordId) {
+    public static  Map<String, String> fileCreate(String base64AfterComma, String fileName, String recordId) {
         ContentVersion cv = createContentVersion(base64AfterComma, fileName); // Create Content Version
         ContentDocumentLink cdl = createContentLink(cv.Id, recordId); // Create Content Document Link
         
@@ -13,7 +13,11 @@ public  class FileUpload {
         }
         
         // Create Successful
-        return cdl.Id;
+        Map<String, String> result = new Map<String, String>();
+        result.put('contentVersionId', cv.Id);
+        result.put('contentDocumentLinkId', cdl.Id);
+
+        return result;
     }
 
     // Create Content Version

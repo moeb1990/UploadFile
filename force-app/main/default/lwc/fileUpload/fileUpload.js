@@ -1,5 +1,6 @@
 import { LightningElement, api } from 'lwc';
 
+
 // Import apex class
 import fileCreate from '@salesforce/apex/fileUpload.fileCreate'
 
@@ -18,7 +19,6 @@ export default class FileUpload extends LightningElement {
     fileData = {} // store the file information (base64, format, size and more)
     valid = true // if the uploaded file information are valid (dimension, size, format)
     errorMessage // store the error message if it exists
-    test
 
     // Return true for images
     get image () {
@@ -63,8 +63,6 @@ export default class FileUpload extends LightningElement {
                         // Vadidate Input
                         if (this.image && this.dimensionAllowed) {
                             this.valid = this.validateInput ()
-                            console.log ('valid after' + this.valid)
-
                         }
 
                         // After Uploading a file for the popup method
@@ -123,6 +121,7 @@ export default class FileUpload extends LightningElement {
 
         // Show success message
         this.fileUploaded = true
+       
     }
 
     // validate dimension
