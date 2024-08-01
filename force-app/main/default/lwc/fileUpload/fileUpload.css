@@ -1,4 +1,9 @@
-.container {
+.containerUpload {
+    display: grid;
+    grid-template-columns: 210px 60px /* display componenets side by side */
+}
+
+.containerDetails {
     display: grid;
     grid-template-columns: 150px 350px; /* display componenets side by side */
 }

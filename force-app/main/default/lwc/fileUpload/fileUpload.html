@@ -2,17 +2,21 @@
     <lightning-card>
 
       <!-- File upload component -->
-      <div class="slds-var-m-around_medium">
+      <div class="slds-var-m-around_medium containerUpload">
           <lightning-input 
             type="file"
-            title={title}
             label={label}
             accept={formats}
             onchange={handleFileUpload}
           ></lightning-input>
+
+          <!-- Help Text component -->
+          <lightning-helptext 
+            content={helpText}
+          ></lightning-helptext>
       </div>
                 
-      <div class="slds-var-m-around_medium container">
+      <div class="slds-var-m-around_medium containerDetails">
           <div>
           
             <!-- Upload Button -->

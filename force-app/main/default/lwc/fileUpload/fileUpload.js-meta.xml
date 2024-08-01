@@ -12,7 +12,7 @@
             <!-- Properties -->
             <property name="recordId" type="String" label="Record Id" required="true"/>
             <property name="label" type="String" label="Label" description="Text to set on top of the component"/>
-            <property name="title" type="String" label="Tooltip" description="Text that appears when mouse hover over the element"/>
+            <property name="helpText" type="String" label="Help Text" description="Text that appears when mouse hover over the element"/>
             <property name="uploadButton" type="Boolean" label="Show the Upload File Button"  description="If to show upload file button"/>
             <property name="uploadModal" type="Boolean" label="Show the Upload File Popup"  description="If to show upload file popup"/>
             <property name="modalHeader" type="String" label="Popup Title"  description="The text appearing on the popup title. Relevant when the uploadModal is true"/>
